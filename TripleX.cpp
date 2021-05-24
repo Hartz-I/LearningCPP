@@ -2,15 +2,16 @@
 //preprocessor directive #include
 #include <iostream> //header file
 
-
-int main() //int means type int. int mains means the main named function returns a integer.
-{ //function body
-    //std::cout << "Hello World!!!" ; //std = standard ; is a name space, :: = scope operator ; whats in namespace, cout is whats defined in namespace, << output the right, "" within them string, end with ;
-    
+//function
+//function return type is void cuz we don't really want to return anything!
+bool PlayGame(int Difficulty) //PlayGame must return a value
+{
     std:: cout << "In the land of mathlocus there lies the mythic city of zeros. You are a prisoner in the central jail of zeros living your life meditating while amending your sins.";
     std:: cout << std::endl; //end line function in std namespace
     std:: cout << "Though you are supposed to spend rest of your life there, the devines are pleased with your worship. So you are given an opportunity to flee the prison. what will you do?" << std:: endl;
-    std:: cout << "You choose YES! Therefore given a puzzle to solve...";
+    std:: cout << "You choose YES! Therefore given a puzzle to solve! \n";
+    std:: cout << "You are at gate " << Difficulty;
+    std:: cout << ". Something is written on the wall...";
 
     //c = 10; can't assign before declaring
 
@@ -42,11 +43,11 @@ int main() //int means type int. int mains means the main named function returns
 
     std:: cout << std:: endl; //or simply the \n
     //std:: cout << a + b + c;
-    std:: cout << "There are three numbers in the lock! \n";
-    std:: cout << "and they add up to: " << CodeSum; //using this to get new line instead of new call line
+    std:: cout << "+ There are three numbers in the lock! \n";
+    std:: cout << "+ and they add up to: " << CodeSum; //using this to get new line instead of new call line
 
     //std:: cout << std::endl; 
-    std:: cout <<"\n The codes multiply to give: "<< CodeProduct << std::endl;
+    std:: cout <<"\n+ The codes multiply to give: "<< CodeProduct << std::endl;
 
     int GuessA, GuessB, GuessC;
 
@@ -66,9 +67,39 @@ int main() //int means type int. int mains means the main named function returns
     //compare with if statements
     if (GuessSum == CodeSum && GuessProduct == CodeProduct)
     {
-        std:: cout << "You have entered the correct answer!";
+        std:: cout << "You have entered the correct answer! Running to the next gate! \n \n";
+        return true; //return value where the funciton may end
     } else {
-        std:: cout << "You have failed and died!";
+        std:: cout << "You have failed and died! \n \n";
+        return false;
+    }
+}
+
+
+//it's the entry function. if nothing is in there nothing will happen!
+int main() //int means type int. int mains means the main named function returns a integer.
+{ //function body
+    //std::cout << "Hello World!!!" ; //std = standard ; is a name space, :: = scope operator ; whats in namespace, cout is whats defined in namespace, << output the right, "" within them string, end with ;
+    
+    //dificulty var
+    int LevelDifficulty = 1;
+
+    const int MaxDifficulty = 5; 
+
+    //while loop
+    while (LevelDifficulty <= MaxDifficulty) //loop untill the all levels are completed
+    {
+        bool bLevelComplete = PlayGame(LevelDifficulty); //now it returns a value
+
+        std:: cin.clear(); //clears any errors
+        std:: cin.ignore(); //discards any buffer
+
+        if (bLevelComplete)
+        {
+            //increase level dificulty
+            ++LevelDifficulty; //LevelDifficulty = LevelDificulty + 1
+        }
+        
     }
 
     return 0; //return is used as exit status
