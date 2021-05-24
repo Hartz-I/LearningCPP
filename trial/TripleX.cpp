@@ -1,5 +1,6 @@
 //preprocessor directive
 #include <iostream>
+#include <ctime> //to make it more random
 
 
 void PrintIntroFull(int Difficulty, int GuessCount)
@@ -51,9 +52,9 @@ bool PlayGame(int Difficulty, int GuessCount)
 
     //declaration statements
     //declare 3 number code
-    const int CodeA = 4;
-    const int CodeB = 5;
-    const int CodeC = 6;
+    const int CodeA = rand()%(Difficulty + 1) + Difficulty; //generates a random number from 0 to 32767
+    const int CodeB = rand()%(Difficulty + 1) + Difficulty;
+    const int CodeC = rand()%(Difficulty + 1) + Difficulty;
 
     const int CodeSum = CodeA + CodeB + CodeC;
     const int CodeProduct = CodeA * CodeB * CodeC;
@@ -85,7 +86,7 @@ bool PlayGame(int Difficulty, int GuessCount)
     {
         if (GuessCount == 1)
         {
-            std:: cout << "You have failed and died!";
+            std:: cout << "\nYou have failed and died! \n Starting New Game! \n \n";
         }
         else{
             std:: cout << "You have failed! Please Retry!";
@@ -96,12 +97,16 @@ bool PlayGame(int Difficulty, int GuessCount)
 
 int main() 
 {
+    srand(time(NULL)); //create new random sequence based on time of day
+
     int LevelDifficulty = 1;
     int MaxDifficulty = 5;
     int GuessCount = 3;
     
     while (LevelDifficulty <= MaxDifficulty) 
     {
+        //std:: cout << rand() % 9 << "\n";
+
         bool bLevelComplete = PlayGame(LevelDifficulty , GuessCount);
         //std:: cout << std:: endl << GuessCount << " trials remaining! \n";
 
@@ -124,7 +129,7 @@ int main()
         }
     }
 
-    std:: cout << "\n \nCongratulations! You have successfully escaped the prison!";
+    std:: cout << "\n \nCongratulations! You have successfully escaped from the prison!";
 
     return 0; //return statement
 }
