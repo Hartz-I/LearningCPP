@@ -97,9 +97,10 @@ bool PlayGame(int Difficulty, int GuessCount)
 int main() 
 {
     int LevelDifficulty = 1;
+    int MaxDifficulty = 5;
     int GuessCount = 3;
     
-    while (true) 
+    while (LevelDifficulty <= MaxDifficulty) 
     {
         bool bLevelComplete = PlayGame(LevelDifficulty , GuessCount);
         //std:: cout << std:: endl << GuessCount << " trials remaining! \n";
@@ -122,6 +123,8 @@ int main()
             }
         }
     }
+
+    std:: cout << "\n \nCongratulations! You have successfully escaped the prison!";
 
     return 0; //return statement
 }
